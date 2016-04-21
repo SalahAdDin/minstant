@@ -1,0 +1,18 @@
+<head>
+    <title>Instant message!</title>
+</head>
+
+<body>
+</body>
+
+<!-- this is the main template used by iron:router to build the page -->
+<template name="ApplicationLayout">
+    <header>
+        {{> yield "header"}}
+    </header>
+
+    <main class="container">
+        {{> yield "main"}}
+    </main>
+    <footer></footer>
+</template>
