@@ -9318,6 +9318,15 @@ Template.registerHelper('momentFormat', function (time) {
     }
 });
 
+Template.registerHelper('isMyUser', function (userId) {
+    return (userId == Meteor.userId());
+});
+
+Template.registerHelper('getUsername', function (userId) {
+    user = Meteor.users.findOne({_id: userId});
+    return user.username;
+});
+
 Template.chat_page.rendered = function () {
 
     $("#text-field").textcomplete([{

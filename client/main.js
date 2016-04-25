@@ -22,15 +22,7 @@ Template.available_user_list.helpers({
     }
 });
 
-Template.available_user.helpers({
-    getUsername: function (userId) {
-        user = Meteor.users.findOne({_id: userId});
-        return user.username;
-    },
-    isMyUser: function (userId) {
-        return (userId == Meteor.userId());
-    }
-});
+Template.available_user.helpers({});
 
 
 Template.chat_page.helpers({
@@ -39,13 +31,16 @@ Template.chat_page.helpers({
         return chat.messages;
     },
     other_user: function () {
-        return "";
+        var chat = Chats.findOne({_id:Session.get("chatId")});
+        if(chat.user1Id === Meteor.userId())
+            return chat.user2Id;
+        else
+            return chat.user1Id;
     }
 
 });
 
-Template.chat_message.helpers({
-});
+Template.chat_message.helpers({});
 
 Template.navbar.helpers({
     avatar: function () {
@@ -75,6 +70,7 @@ Template.chat_page.events({
             msgs.push({
                 avatar: Meteor.user().profile.avatar,
                 username: Meteor.user().username,
+                userid: Meteor.userId(),
                 text: event.target.chat.value,
                 onDate: new Date()
             });

@@ -21,6 +21,7 @@
         <div class="thumbnail text-center">
             <img src="{{profile.avatar}}" class="avatar_img">
             <div class="caption {{#if isMyUser _id}}bg-success{{/if}}">
+                {{> easy_presence}}
                 {{#if isMyUser _id}}
                     {{getUsername _id}} (YOU)
                 {{else}}
